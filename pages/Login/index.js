@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import styles from "./styles";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,19 +7,16 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
-  ActivityIndicator,
 } from "react-native";
-import { AuthContext } from "../../contexts";
-import styles from "./styles";
-import * as auth from "../../services/auth";
 
-import { Scroll } from "./styles";
+import Loading from "../../components/LoadingComponent";
+import { useAuth } from "../../hooks";
 
 export default function Login(props) {
   const [mail, setMail] = useState("ana@teste.com");
   const [password, setPassword] = useState("123456");
   const [loading, setLoading] = useState(false);
-  const { signIn, token } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
   function handleSign() {
     if (!mail) {
@@ -77,16 +75,3 @@ export default function Login(props) {
     <Loading />
   );
 }
-
-const Loading = () => (
-  <View
-    style={{
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#FFC125",
-    }}
-  >
-    <ActivityIndicator size="large" color="#666" />
-  </View>
-);

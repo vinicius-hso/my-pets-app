@@ -10,13 +10,16 @@ export default function Loading({ operation }) {
         backgroundColor: "#FFC125",
       }}
     >
-      <Text
-        style={{
-          margin: 20,
-        }}
-      >
-        {operation}
-      </Text>
+      {operation && (
+        <Text
+          style={{
+            margin: 20,
+          }}
+        >
+          {operation}
+        </Text>
+      )}
+
       <ActivityIndicator size="large" color="#666" />
     </View>
   );

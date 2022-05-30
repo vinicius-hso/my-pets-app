@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { useState, useContext, useEffect } from "react";
 import {
   View,
@@ -9,16 +10,15 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { FAB } from "react-native-paper";
-import styles from "./styles";
-import { PetContext } from "../../contexts";
-import { PaymentContext } from "../../contexts";
+
+import { usePet, usePayment } from "../../hooks";
+
 import Loading from "../../components/LoadingComponent";
 import Empty from "../../components/EmptyComponent";
 
 export default function Payment(props) {
-  const { pet } = useContext(PetContext);
-  const { paymentCreate, paymentList, paymentRemove } =
-    useContext(PaymentContext);
+  const { pet } = usePet();
+  const { paymentCreate, paymentList, paymentRemove } = usePayment();
 
   const [register, setRegister] = useState(false);
   const [list, setList] = useState([]);

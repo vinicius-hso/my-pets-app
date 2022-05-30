@@ -33,7 +33,6 @@ export default function Pet(props) {
       const response = await petList();
       if (response.pets) {
         setList(response.pets);
-        // if (response.pets.length > 0) setSelected(response.pets[0].idpet);
         if (response.pets.length > 0) handleSelect(response.pets[0]);
       }
       setLoading(false);

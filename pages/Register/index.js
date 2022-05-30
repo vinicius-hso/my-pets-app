@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import styles from "./styles";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,17 +7,19 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
-  ActivityIndicator,
 } from "react-native";
-import { AuthContext } from "../../contexts";
-import styles from "./styles";
+
+import { useAuth } from "../../hooks";
+
+import Loading from "../../components/LoadingComponent";
 
 export default function Register(props) {
   const [mail, setMail] = useState("ana@teste.com");
   const [password, setPassword] = useState("123456");
   const [confirmation, setConfirmation] = useState("123456");
   const [loading, setLoading] = useState(false);
-  const { userCreate } = useContext(AuthContext);
+
+  const { userCreate } = useAuth();
 
   async function handleRegister() {
     if (!mail) {
@@ -87,16 +90,3 @@ export default function Register(props) {
   );
   null;
 }
-
-const Loading = () => (
-  <View
-    style={{
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#FFC125",
-    }}
-  >
-    <ActivityIndicator size="large" color="#666" />
-  </View>
-);
